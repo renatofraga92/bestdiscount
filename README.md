@@ -1,1 +1,5 @@
-# bestdiscount
+Este código em Python é uma implementação de um algoritmo de otimização para determinar o desconto ideal a ser aplicado em um produto, com base em dados históricos de vendas e descontos. O algoritmo utiliza a equação de demanda linear para modelar a relação entre preço e quantidade vendida e encontrar o ponto em que a receita é maximizada.
+
+Para utilizar o código, o usuário precisa informar os valores de desconto e quantidade vendida em duas etapas. O código calcula o coeficiente angular da equação de demanda com base nos valores informados pelo usuário e define a função de receita, que é então passada para a função minimize da biblioteca scipy.optimize. A saída da função minimize é o ponto em que a receita é maximizada, que é então usado para calcular o desconto ideal a ser aplicado e a quantidade de vendas esperada.
+
+É importante salientar que o código assume que a relação entre preço e quantidade vendida é diretamente proporcional, o que pode não ser verdade em todos os casos. Além disso, existem diversas outras considerações que podem afetar a determinação do desconto ideal, como a elasticidade da demanda, a concorrência, os custos de produção, entre outros fatores. Portanto, a implementação do código pode ser melhorada e adaptada às especificidades de cada caso.
