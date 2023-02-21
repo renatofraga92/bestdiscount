@@ -1,39 +1,44 @@
 from scipy.optimize import minimize
 
+# Ask for input data: discount rates and corresponding sales
 
-print("Informe a quantidade de vendas anteriores e seus respectivos desconto")
+print("Enter the previous sales data and their respective discounts")
 print(" ")
 
+discount1 = int(input("Enter the first discount rate: "))
+sales1 = int(input("Enter the number of sales made at this discount rate: "))
 
-desconto1 = int(input("Informe o primeiro desconto  "))
-publico1 = int(input("Informe a quantidade de vendas realizadas para este desconto  "))
+discount2 = int(input("Enter the second discount rate: "))
+sales2 = int(input("Enter the number of sales made at this discount rate: "))
 
-desconto2 = int(input("Informe o segundo desconto  "))
-publico2 = int(input("Informe a quantidade de vendas realizadas para este desconto  "))
+# Calculate the angular coefficient of the line that connects the two data points
 
+M = ((discount2 - discount1)/(sales2 - sales1))
 
-
-M = ((desconto2 - desconto1)/(publico2 - publico1))
-
+# Define a function that represents the revenue as a function of the discount rate
+# Note that we multiply the function by -1 so that the minimize function will find the maximum instead of the minimum
 
 def R(x):
-    return -((M*(publico2-x) + desconto2)*x)
+    return -((M*(sales2-x) + discount2)*x)
 
+# Find the optimal discount rate that maximizes revenue
+# The minimize function is used to maximize the R function
 
-maxpublico = minimize(R,1)
+maxsales = minimize(R,1)
 
-Dmaxreceita = desconto2 - M*(int(maxpublico.x)-publico2)
+# Calculate the optimal discount rate and expected revenue
 
-
+Dmaxrevenue = discount2 - M*(int(maxsales.x)-sales2)
 
 print(" ")
-print("desconto sugerido:")
-print(float(Dmaxreceita))
+print("Suggested discount rate:")
+print(float(Dmaxrevenue))
 print(" ")
-print("Quantidade de vendas esperada:")
-print(int(maxpublico.x))
+print("Expected number of sales:")
+print(int(maxsales.x))
 print(" ")
-print("Receita esperada:")
-print(int(Dmaxreceita*maxpublico.x))
+print("Expected revenue:")
+print(float(Dmaxrevenue*maxsales.x))
+
 
 
